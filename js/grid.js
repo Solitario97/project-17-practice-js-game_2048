@@ -10,8 +10,9 @@
                 this.cells.push(
                     new Cell(gridElement, i % GRID_SIZE, Math.floor(i / GRID_SIZE))
                 );
-                
             }
+
+            this.cellsGroupedByColumn = this.groupCellsByColumn();
         }
 
         getRandomEmptyCell() {
@@ -20,4 +21,11 @@
             return emptyCells[randomIndex];
         }
 
-    };
+        groupCellsByColumn() {
+            return this.cells.reduce((groupedCells, cell) => {
+                groupedCells[cell.x] =  groupedCells[cell.x] || [];
+                groupedCells[cell.x] [cell.y] = cell;
+                return groupedCells;
+            }, []);
+        }
+    }

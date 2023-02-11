@@ -12,7 +12,24 @@
             this.linkedTile = tile;
         }
 
+        unlinkTile() {
+            this.linkTile = null;
+        }
+
         isEpmty() {
             return !this.linkedTile;
+        }
+
+        linkTileForMerge(tile) {
+            tile.setXY(this.x, this.y);
+            this.linkTileForMerge = tile;
+        }
+
+        hasTileForMerge() {
+           return !!this.linkedTileForMerge; 
+        }
+
+        canAccept(newTile) {
+            return this.isEpmty() || (!this.hasTileForMerge() && this.linkedTile.value === newTile.value);
         }
     }
